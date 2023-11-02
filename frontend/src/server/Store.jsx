@@ -1,8 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
+import userSlice, { setUser, editUserName } from './userSlice';
+import tokenSlice, { signIn, signOut } from './tokenSlice';
 
-export default configureStore({
+const store =  configureStore({
     reducer: {
-        // user:,
-        // token:,
+      authentication: tokenSlice,
+      user: userSlice,
     },
-})
+});
+
+export { signIn, signOut, setUser, editUserName };
+export default store;

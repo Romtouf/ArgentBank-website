@@ -1,9 +1,17 @@
 
+import { useState } from "react";
 import "../style/components/authentication.css";
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 const Authentication = () => {
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
     return (
         

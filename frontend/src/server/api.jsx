@@ -19,9 +19,52 @@ export async function login(email, password) {
     })
     .then((data) => {
         console.log(data);
-        return data.token;
+        return data.body.token;
     })
     .catch ((error) => {
         throw new Error (error.message)
     })
+}
+
+export async function userProfile(token) {
+    return fetch ("http://localhost:3001/api/v1/user/profile", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    })
+    .then((response) => {
+        if(!response.ok) {
+            throw new Error ("Erreur de récupération des données");
+        }
+        return response.json();
+    })
+    .catch((error) => {
+        throw new Error (error.message)
+    });
+}
+
+export async function editUserName(token, newUserName) {
+    return fetch("http://localhost:3001/api/v1/user/profile", {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            userName: newUserName,
+        }),
+    })
+    .then((response)=> {
+        if(!response.ok) {
+            throw new Error("La modification n'a pu être effectuée");
+        }
+        response.json();
+    })
+    .then((data) => {
+        return data.body.userName;
+    })
+    .catch((error) => {
+        throw new Error(error.message)
+    });
 }
