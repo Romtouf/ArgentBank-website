@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+
 import "../style/components/authentication.css";
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link} from 'react-router-dom';
+
 
 const Authentication = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [data, setData] = useState({email:"", password: ""});
+
     return (
         
           <main class="main bg-dark">
