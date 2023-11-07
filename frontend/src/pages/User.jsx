@@ -1,7 +1,7 @@
 import React from 'react';
 import "../style/pages/user.css";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from '../server/userSlice';
+import userSlice, { setUser } from '../server/userSlice';
 import { userProfile } from '../server/api';
 import { useEffect } from 'react';
 
@@ -9,6 +9,8 @@ const User = () => {
 
   const dispatch = useDispatch();
   const token = useSelector ((state) => state.authentication.token);
+  const firstName = useSelector ((state) => state.user.userData.firstName);
+
 
   useEffect(() => {
     const callUserProfile = async () => {
@@ -26,7 +28,9 @@ const User = () => {
     return (
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />Jarvis</h1>
+        <h1>Welcome back<br />{firstName}</h1>;
+    
+
         <button className="edit-button">Edit Name</button>
       </div>
       <h2 className="sr-only">Accounts</h2>
