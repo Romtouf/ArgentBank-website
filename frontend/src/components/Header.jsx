@@ -1,6 +1,6 @@
 import React from 'react';
 import "../style/components/header.css";
-import logo from "../img/argentBankLogo.png";
+import logo from "../img/argentBankLogo.webp";
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { signOut } from '../server/tokenSlice';

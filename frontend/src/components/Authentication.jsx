@@ -59,8 +59,8 @@ export default function Authentication() {
             ><input type="text" id="username" value={email} onChange={(e) => setEmail(e.target.value)} />
           </div>
           <div className="input-wrapper">
-            <label htmlFor="password">Password</label
-            ><input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <label htmlFor="password">Password</label>
+            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
           <div className="input-remember">
             <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"

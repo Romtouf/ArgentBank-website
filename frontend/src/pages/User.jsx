@@ -10,8 +10,6 @@ const User = () => {
 
   const dispatch = useDispatch();
   const token = useSelector ((state) => state.authentication.token);
-  const firstName = useSelector ((state) => state.user.userData.firstName);
-
 
   useEffect(() => {
     const callUserProfile = async () => {
@@ -29,9 +27,9 @@ const User = () => {
     return (
         <main className="main bg-dark">
       <div className="header">
-        <h1>Welcome back<br />{firstName}</h1>
 
         <EditUserNameButton />
+
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

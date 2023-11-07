@@ -38,21 +38,33 @@ export default function EditUserNameButton() {
         <div>
             {editForm ? (
                 <section className="edit-container">
-                    <h2>USERNAME EDITION</h2>
+                    <h2>Edit user info</h2>
                     <form className="edit-form" onSubmit={callEditUserName}>
                         <div className="input-edit">
-                        <label htmlFor="username">User name :</label>
+                        <label htmlFor="username">User name:</label>
                         <input type="text" id="username" value={newUserName} onChange={(e) => setNewUserName(e.target.value)} />
                         </div>
+                        <div className="input-edit">
+                        <label htmlFor="firstname">First name:</label>
+                        <input type="text" id="firstname" defaultValue={user.firstName} readOnly disabled />
+                        </div>
+                        <div className="input-edit">
+                        <label htmlFor="lastname">Last name:</label>
+                        <input type="text" id="lastname" defaultValue={user.lastName} readOnly disabled />
+                        </div>
                         <div className="button-edit">
-                            <button type="submit">Save edition</button>
-                            <button onClick={closeForm}>Stop editing</button>
+                            <button type="submit">Save</button>
+                            <button onClick={closeForm}>Cancel</button>
                         </div>
                     </form>
                 </section>
             ) :
             (
+                <div>
+                    <h1>Welcome back<br />{user.firstName}</h1>
                 <button className="edit-button" onClick={displayForm}>Edit Name</button>
+                </div>
+                
             )}
         </div>
     )
