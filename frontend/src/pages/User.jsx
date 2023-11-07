@@ -1,9 +1,10 @@
 import React from 'react';
 import "../style/pages/user.css";
 import { useDispatch, useSelector } from "react-redux";
-import userSlice, { setUser } from '../server/userSlice';
+import { setUser } from '../server/userSlice';
 import { userProfile } from '../server/api';
 import { useEffect } from 'react';
+import EditUserNameButton from '../components/EditUserNameButton';
 
 const User = () => {
 
@@ -30,7 +31,7 @@ const User = () => {
       <div className="header">
         <h1>Welcome back<br />{firstName}</h1>
 
-        <button className="edit-button">Edit Name</button>
+        <EditUserNameButton />
       </div>
       <h2 className="sr-only">Accounts</h2>
       <section className="account">

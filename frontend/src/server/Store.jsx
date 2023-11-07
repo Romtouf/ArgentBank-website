@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userSlice, { setUser, editUserName } from './userSlice';
+import userSlice, { setUser, editUser } from './userSlice';
 import tokenSlice, { signIn, signOut } from './tokenSlice';
 
 const store =  configureStore({
@@ -9,5 +9,5 @@ const store =  configureStore({
     },
 });
 
-export { signIn, signOut, setUser, editUserName };
+export { signIn, signOut, setUser, editUser };
 export default store;

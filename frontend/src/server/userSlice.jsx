@@ -15,11 +15,11 @@ const userSlice = createSlice({
         setUser: (state, action) => {
             state.userData = action.payload.body;
         },
-        editUserName: (state, action) => {
+        editUser: (state, action) => {
             state.userData.userName = action.payload;
         }
     },
 },)
 
-export const { setUser, editUserName } = userSlice.actions;
+export const { setUser, editUser } = userSlice.actions;
 export default userSlice.reducer;
