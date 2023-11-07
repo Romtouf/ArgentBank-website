@@ -11,6 +11,7 @@ export async function login(email, password) {
         }),
     })
     .then((response) => {
+        console.log(response);
         if (response.ok) {
             return response.json();
         } else {
@@ -18,10 +19,10 @@ export async function login(email, password) {
         }
     })
     .then((data) => {
-        console.log(data);
+        
         return data.body.token;
     })
-    .catch ((error) => {
+    .catch((error) => {
         throw new Error (error.message)
     })
 }
