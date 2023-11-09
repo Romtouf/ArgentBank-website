@@ -96,3 +96,8 @@ body {
       width: 200px;
     }
   }
+  @media (max-width: 719.99px) {
+    .bg-dark {
+      height: 1200px;
+    }
+    }
