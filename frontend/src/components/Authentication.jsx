@@ -14,14 +14,7 @@ export default function Authentication() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const rememberMeEmail = localStorage.getItem("rememberMeEmail");
-    const rememberMePassword = localStorage.getItem("rememberMePassword");
-    if (rememberMeEmail && rememberMePassword) {
-      setEmail(rememberMeEmail);
-      setPassword(rememberMePassword);
-    }
-  }, [])
+ 
 
   const connectionUser = (e) => {
     e.preventDefault()
@@ -40,46 +33,47 @@ export default function Authentication() {
      
       navigate("/user");
     })
-    .catch((error) => {
-      setError("Erreur lors de la connexion")
+    .catch(() => {
+      setError("Erreur lors de la connexion");
     });
   }
 
-  
+  useEffect(() => {
+    const rememberMeEmail = localStorage.getItem("rememberMeEmail");
+    const rememberMePassword = localStorage.getItem("rememberMePassword");
+    if (rememberMeEmail && rememberMePassword) {
+      setEmail(rememberMeEmail);
+      setPassword(rememberMePassword);
+    }
+  }, [])
 
     return (
-        
-          <main className="main bg-dark">
-      <section className="sign-in-content">
-        <i className="fa fa-user-circle sign-in-icon"></i>
-        <h1>Sign In</h1>
-        <form onSubmit={connectionUser}>
-          <div className="input-wrapper">
-            <label htmlFor="username">Username</label
-            ><input type="text" id="username" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </div>
-          <div className="input-remember">
-            <input type="checkbox" id="remember-me" /><label htmlFor="remember-me"
-              >Remember me</label
-            >
-          </div>
-        {/* <Link to="/user"> */}
+      <main className="main bg-dark">
+        <section className="sign-in-content">
+          <i className="fa fa-user-circle sign-in-icon"></i>
+          <h1>Sign In</h1>
+          <form onSubmit={connectionUser}>
+            <div className="input-wrapper">
+              <label htmlFor="username">Username</label
+              ><input type="text" id="username" value={email} onChange={(e) => setEmail(e.target.value)} />
+            </div>
+            <div className="input-wrapper">
+              <label htmlFor="password">Password</label>
+              <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            </div>
+            <div className="input-remember">
+              <input type="checkbox" id="remember-me" />
+              <label htmlFor="remember-me">
+                Remember me
+                </label>
+            </div>
             <button type="submit"
                 className="sign-in-button">
                 Sign In
             </button>
-            <div className="displayError">{error}</div>
-        {/* </Link> */}
-         
-         
+            <div className="displayError">{error}</div>       
         </form>
       </section>
-    </main>
-        
-      
+    </main>  
     );
 }

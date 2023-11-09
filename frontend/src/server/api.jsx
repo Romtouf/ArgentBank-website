@@ -2,8 +2,8 @@ export async function login(email, password) {
     return fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+            Accept: "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify ({
             email: email,
@@ -11,7 +11,6 @@ export async function login(email, password) {
         }),
     })
     .then((response) => {
-        console.log(response);
         if (response.ok) {
             return response.json();
         } else {
@@ -19,11 +18,10 @@ export async function login(email, password) {
         }
     })
     .then((data) => {
-        
         return data.body.token;
     })
-    .catch((error) => {
-        throw new Error (error.message)
+    .catch(() => {
+        throw new Error ("Erreur lors de la récupération des données")
     })
 }
 
@@ -36,12 +34,12 @@ export async function userProfile(token) {
     })
     .then((response) => {
         if(!response.ok) {
-            throw new Error ("Erreur de récupération des données");
+            throw new Error ("Erreur lors de la récupération des données");
         }
         return response.json();
     })
-    .catch((error) => {
-        throw new Error (error.message)
+    .catch(() => {
+        throw new Error ("Erreur lors de la récupération du profil")
     });
 }
 
@@ -57,19 +55,15 @@ export async function editUserName(token, newUserName) {
         }),
     })
     .then((response)=> {
-
         if(!response.ok) {
-
-            throw new Error("La modification n'a pu être effectuée");
-
+            throw new Error("La modification n'a pas pu être effectuée");
         }
-
         return response.json();
     })
     .then((data) => 
         data.body.userName
     )
-    .catch((error) => {
-        throw new Error(error.message)
+    .catch(() => {
+        throw new Error("Une erreur a été rencontrée")
     });
 }
