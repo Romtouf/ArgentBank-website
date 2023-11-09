@@ -26,10 +26,12 @@ export default function EditUserNameButton() {
         e.preventDefault();
 
         editUserName(token, newUserName)
+       
         .then((changeUserName) => {
             dispatch(editUser(changeUserName));
             setEditForm(false);
-        }).catch((error) => {
+        })
+        .catch(() => {
             throw new Error("La mise à jour du nom d'utilisateur n'a pas pu être effectuée")
         });
     };

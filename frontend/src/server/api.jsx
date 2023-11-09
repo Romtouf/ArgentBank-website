@@ -57,14 +57,18 @@ export async function editUserName(token, newUserName) {
         }),
     })
     .then((response)=> {
+
         if(!response.ok) {
+
             throw new Error("La modification n'a pu être effectuée");
+
         }
-        response.json();
+
+        return response.json();
     })
-    .then((data) => {
-        return data.body.userName;
-    })
+    .then((data) => 
+        data.body.userName
+    )
     .catch((error) => {
         throw new Error(error.message)
     });
