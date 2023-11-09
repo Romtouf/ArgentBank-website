@@ -46,6 +46,7 @@ h2 {
     background: #00bc77;
     border: #00bc77;
     border-radius: 5px;
+    cursor: pointer;
 }
 #firstname, #lastname {
     background: lightgray;
