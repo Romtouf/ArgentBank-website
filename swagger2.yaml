@@ -1,0 +1,360 @@
+swagger: "2.0"
+info:
+  title: Bank Argent API documentation
+  description: Argentbank API phase 2
+  version: "1.1.0"
+  termsOfService: "http://swagger.io/terms/"
+host: localhost:3001
+basePath: /api/v2
+schemes:
+  - http
+paths:
+  /user/{userid}/accounts:
+    get:
+      tags:
+        - Account Module
+      summary: Accounts
+      description: API for user's accounts
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: User's accounts successfully
+          schema:
+            $ref: "#/definitions/Accounts"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Account Module
+      summary: User account API
+      description: API for create an account
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: body
+          name: body
+          description: User account created
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Account successfully
+          schema:
+            $ref: "#/definitions/AccountResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+  /user/{userid}/accounts/{accountid}:
+    put:
+      tags:
+        - Account Module
+      summary: User Account API
+      description: API for updating an account
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: body
+          name: body
+          description: Update user account attributes
+          required: true
+          schema:
+            $ref: "#/definitions/Account"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Account updated successfully
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Account Module
+      summary: Delete user account API
+      description: API for delete a user's account
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Deleted successfully
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+
+  /user/{userid}/accounts/{accountid}/transactions:
+    get:
+      tags:
+        - Transaction Module
+      summary: Account Transactions API
+      description: API for retrieve a user's account
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: query
+          name: month
+          type: string
+          description: Current month transactions
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transactions retrieved successfully
+          schema:
+            $ref: "#/definitions/Transactions"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for add a new transaction
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: body
+          name: body
+          description: Create a transaction
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Added successfully
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+  /user/{userid}/accounts/{accountid}/transactions/{transactionid}:
+    get:
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for retrieve transaction's details
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: path
+          name: transactionid
+          type: string
+          required: true
+          description: Transaction ID
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction's details successfully
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    put:
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for updating transaction's details
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: path
+          name: transactionid
+          type: string
+          required: true
+          description: Transaction ID
+        - in: body
+          name: body
+          description: Update transaction's details attributes
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction's details updated successfully
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    delete:
+      tags:
+        - Transaction Module
+      summary: Delete Transaction API
+      description: API for delete a transaction
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: path
+          name: transactionid
+          type: string
+          required: true
+          description: Transaction ID
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Deleted successfully
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+definitions:
+  Accounts:
+    type: object
+    properties:
+      accounts:
+        type: array
+        items:
+          $ref: "#/definitions/Account"
+        description: List of user's accounts
+  Account:
+    type: object
+    properties:
+      accountType:
+        type: string
+        description: Account's type
+      balance:
+        type: number
+        description: Current balance in an account
+
+  AccountResponse:
+    type: object
+    properties:
+      accountId:
+        type: string
+        description: New account's ID
+      accountType:
+        type: string
+        description: Account's type
+      balance:
+        type: number
+        description: Current balance in an account
+
+  Transactions:
+    type: object
+    properties:
+      transactions:
+        type: array
+        items:
+          $ref: "#/definitions/TransactionResponse"
+        description: List of account's transactions
+
+  Transaction:
+    type: object
+    properties:
+      Category:
+        type: string
+        description: Transaction's category
+      Note:
+        type: string
+        description: Transaction's note
+  
+  TransactionResponse:
+    type: object
+    properties:
+      transactionId:
+        type: string
+        description: Transaction's ID
+      amount:
+        type: number
+        description: Transaction's amount
+      description:
+        type: string
+        description: Transaction's description
+      date:
+        type: string
+        format: date-time
+        description: Transaction's date and time
+      status:
+        type: string
+        description: Transaction's status
+      Category:
+        type: string
+        description: Transaction's category
+      Note:
+        type: string
+        description: Transaction's note
