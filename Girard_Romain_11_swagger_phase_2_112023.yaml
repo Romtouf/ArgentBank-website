@@ -123,7 +123,7 @@ paths:
       tags:
         - Transaction Module
       summary: Account Transactions API
-      description: API for retrieve a user's account
+      description: API for retrieve a user's account transactions
       parameters:
         - in: path
           name: userid
@@ -146,39 +146,6 @@ paths:
           description: Transactions retrieved successfully
           schema:
             $ref: "#/definitions/Transactions"
-        "400":
-          description: Invalid Fields
-        "500":
-          description: Internal Server Error
-    post:
-      tags:
-        - Transaction Module
-      summary: Transaction API
-      description: API for add a new transaction
-      parameters:
-        - in: path
-          name: userid
-          type: string
-          required: true
-          description: User ID
-        - in: path
-          name: accountid
-          type: string
-          required: true
-          description: Account ID
-        - in: body
-          name: body
-          description: Create a transaction
-          required: true
-          schema:
-            $ref: "#/definitions/Transaction"
-      produces:
-        - application/json
-      responses:
-        "200":
-          description: Added successfully
-          schema:
-            $ref: "#/definitions/TransactionResponse"
         "400":
           description: Invalid Fields
         "500":
@@ -210,6 +177,44 @@ paths:
       responses:
         "200":
           description: Transaction's details successfully
+          schema:
+            $ref: "#/definitions/TransactionResponse"
+        "400":
+          description: Invalid Fields
+        "500":
+          description: Internal Server Error
+    post:
+      tags:
+        - Transaction Module
+      summary: Transaction API
+      description: API for add transaction's details
+      parameters:
+        - in: path
+          name: userid
+          type: string
+          required: true
+          description: User ID
+        - in: path
+          name: accountid
+          type: string
+          required: true
+          description: Account ID
+        - in: path
+          name: transactionid
+          type: string
+          required: true
+          description: Transaction ID
+        - in: body
+          name: body
+          required: true
+          description: Transaction ID
+          schema:
+            $ref: "#/definitions/Transaction"
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: Transaction's information successfully
           schema:
             $ref: "#/definitions/TransactionResponse"
         "400":
