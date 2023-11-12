@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import "../style/components/authentication.css";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -21,15 +21,6 @@ export default function Authentication() {
     login(email, password)
     .then((token) => {
       dispatch(signIn(token));
-
-      const rememberMe = document.getElementById("remember-me");
-      if (rememberMe && rememberMe.checked) {
-        localStorage.setItem("rememberMeEmail", email);
-        localStorage.setItem("rememberMePassword", password);
-      } else {
-        localStorage.removeItem("email");
-        localStorage.removeItem("password");
-      }
      
       navigate("/user");
     })
@@ -37,15 +28,6 @@ export default function Authentication() {
       setError("Erreur lors de la connexion");
     });
   }
-
-  useEffect(() => {
-    const rememberMeEmail = localStorage.getItem("rememberMeEmail");
-    const rememberMePassword = localStorage.getItem("rememberMePassword");
-    if (rememberMeEmail && rememberMePassword) {
-      setEmail(rememberMeEmail);
-      setPassword(rememberMePassword);
-    }
-  }, [])
 
     return (
       <main className="main bg-dark">
