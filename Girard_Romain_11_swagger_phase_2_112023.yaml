@@ -11,6 +11,8 @@ schemes:
 paths:
   /user/{userid}/accounts:
     get:
+      security:
+        - Bearer: []
       tags:
         - Account Module
       summary: Accounts
@@ -33,6 +35,8 @@ paths:
         "500":
           description: Internal Server Error
     post:
+      security:
+        - Bearer: []
       tags:
         - Account Module
       summary: User account API
@@ -62,6 +66,8 @@ paths:
           description: Internal Server Error
   /user/{userid}/accounts/{accountid}:
     put:
+      security:
+        - Bearer: []
       tags:
         - Account Module
       summary: User Account API
@@ -93,6 +99,8 @@ paths:
         "500":
           description: Internal Server Error
     delete:
+      security:
+        - Bearer: []
       tags:
         - Account Module
       summary: Delete user account API
@@ -120,6 +128,8 @@ paths:
 
   /user/{userid}/accounts/{accountid}/transactions:
     get:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Account Transactions API
@@ -152,6 +162,8 @@ paths:
           description: Internal Server Error
   /user/{userid}/accounts/{accountid}/transactions/{transactionid}:
     get:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Transaction API
@@ -184,6 +196,8 @@ paths:
         "500":
           description: Internal Server Error
     post:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Transaction API
@@ -222,6 +236,8 @@ paths:
         "500":
           description: Internal Server Error
     put:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Transaction API
@@ -258,6 +274,8 @@ paths:
         "500":
           description: Internal Server Error
     delete:
+      security:
+        - Bearer: []
       tags:
         - Transaction Module
       summary: Delete Transaction API
@@ -287,6 +305,11 @@ paths:
           description: Invalid Fields
         "500":
           description: Internal Server Error
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 definitions:
   Accounts:
     type: object
