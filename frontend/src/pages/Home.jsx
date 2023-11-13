@@ -11,7 +11,7 @@ const Home = () => {
            <section className="features">
                 <h2 className="sr-only">Features</h2>
                 {dataFeatures.map(({ id, logo, description, title, text }) => (
-                <Features key={id} image={logo} alt={description} title={title} text={text} />
+                <Features key={id} logo={logo} description={description} title={title} text={text} />
                 ))}
             </section>
         </>
