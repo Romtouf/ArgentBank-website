@@ -15,7 +15,7 @@
     },
     {
         "id": "f3",
-        "logo": "./icon-security.webp",
+        "logo": "../icon-security.webp",
         "description": "Security icon",
         "title": "Security you can trust",
         "text": " We use top of the line encryption to make sure your data and money is always safe."
